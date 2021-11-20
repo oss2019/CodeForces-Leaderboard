@@ -1,9 +1,10 @@
 import React from 'react';
+import LoadingSVG from '../LoadingSVG';
 
 const Loading = () => {
   return (
     <>
-      Loading...
+      <LoadingSVG/>
     </>
   );
 }
