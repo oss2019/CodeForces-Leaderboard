@@ -10,7 +10,7 @@ const Footer = (props:any) => {
 
     return (
     <div className={classes.root}>
-      <Grid container>
+      <Grid container justifyContent="space-between" alignItems="center">
         <Grid item sm={6} xs={12}>
           <Typography variant="h6" className={classes.style}>
             Copyright&copy; 2021
