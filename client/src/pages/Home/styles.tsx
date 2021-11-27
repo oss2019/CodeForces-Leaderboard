@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '80vh'
+        minHeight: '80vh',
+        padding: '2rem 0'
     },
     contents: {
         maxWidth: '1200px',

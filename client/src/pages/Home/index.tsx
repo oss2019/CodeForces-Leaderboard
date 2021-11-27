@@ -66,7 +66,7 @@ const Home = () => {
                                 <TableCell>
                                   <Avatar src={row.avatar} alt="avatar" />
                                 </TableCell>
-                                <TableCell component="th" scope="row">
+                                <TableCell align="center" component="th" scope="row">
                                   {`${row.firstName} ${row.lastName}`}
                                 </TableCell>
                                 <TableCell align="center">{row.handle}</TableCell>

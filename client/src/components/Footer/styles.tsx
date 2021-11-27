@@ -2,9 +2,9 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    position: 'absolute',
+    position: 'relative',
     bottom: 0,
-    width: '100vw',
+    // width: '100vw',
     background: '#007753',
     padding: '2rem 2rem'
   },
