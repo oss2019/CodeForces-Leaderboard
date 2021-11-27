@@ -24,17 +24,17 @@ const Home = () => {
     const classes = useStyles();
 
     const [loading, setLoading] = useState(false);
-
-    var rows: Row[] = [];
+    const [rows, setRows] = useState<Row[]>([]);
 
     useEffect(() => {
-      setLoading(true)
+      setLoading(true);
       getLeaderboardData().then(({ data }) => {
-        data?.map((id: Row) => {
-          rows.push(createData(id.handle, id.email, id.avatar, id.firstName, id.lastName, id.rank, id.rating));
+        data.data.forEach((id: Row) => {
+          setRows([ ...rows, createData(id.handle, id.email, id.avatar, id.firstName, id.lastName, id.rank, id.rating) ]);
         });
         setLoading(false);
       }).catch(err => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -43,44 +43,44 @@ const Home = () => {
             <Loading/>
           ):(
             <div className={classes.container}>
-                <div className={classes.contents}>
-                  <h2>Leaderboard</h2>
-                  <br/>
-                  <Grid container spacing={3}>
-                      <Grid item xs={12}>
-                        <TableContainer component={Paper}>
-                          <Table className={classes.table} aria-label="simple table">
-                            <TableHead>
-                              <TableRow>
-                                <TableCell>Avatar</TableCell>
-                                <TableCell align="right">Name</TableCell>
-                                <TableCell align="right">Handle</TableCell>
-                                <TableCell align="right">Email</TableCell>
-                                <TableCell align="right">Rank</TableCell>
-                                <TableCell align="right">Rating</TableCell>
+              <div className={classes.contents}>
+                <h2>Leaderboard</h2>
+                <br/>
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                      <TableContainer component={Paper}>
+                        <Table className={classes.table} aria-label="simple table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>Avatar</TableCell>
+                              <TableCell align="center">Name</TableCell>
+                              <TableCell align="center">Handle</TableCell>
+                              <TableCell align="center">Email</TableCell>
+                              <TableCell align="center">Rank</TableCell>
+                              <TableCell align="center">Rating</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {rows.map((row, index) => (
+                              <TableRow key={index}>
+                                <TableCell>
+                                  <Avatar src={row.avatar} alt="avatar" />
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                  {`${row.firstName} ${row.lastName}`}
+                                </TableCell>
+                                <TableCell align="center">{row.handle}</TableCell>
+                                <TableCell align="center">{row.email}</TableCell>
+                                <TableCell align="center">{row.rank}</TableCell>
+                                <TableCell align="center">{row.rating}</TableCell>
                               </TableRow>
-                            </TableHead>
-                            <TableBody>
-                              {rows.map((row, index) => (
-                                <TableRow key={index}>
-                                  <TableCell>
-                                    <Avatar src={row.avatar} alt="avatar" />
-                                  </TableCell>
-                                  <TableCell component="th" scope="row">
-                                    {`${row.firstName} ${row.lastName}`}
-                                  </TableCell>
-                                  <TableCell align="right">{row.handle}</TableCell>
-                                  <TableCell align="right">{row.email}</TableCell>
-                                  <TableCell align="right">{row.rank}</TableCell>
-                                  <TableCell align="right">{row.rating}</TableCell>
-                                </TableRow>
-                              ))}
-                            </TableBody>
-                          </Table>
-                        </TableContainer>
-                      </Grid>
-                  </Grid>
-                </div>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </Grid>
+                </Grid>
+              </div>
             </div>
           )}
         </>

@@ -1,6 +1,6 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     position: 'absolute',
     bottom: 0,
@@ -21,6 +21,6 @@ const useStyles = makeStyles({
     padding: '0.2rem',
     fontSize: '2rem'
   }
-});
+}));
 
 export default useStyles;

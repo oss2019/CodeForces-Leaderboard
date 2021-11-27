@@ -1,3 +1,15 @@
 .App {
   min-height:100vh;
 }
+
+.MuiAppBar-colorPrimary {
+  background-color: #007753 !important;
+}
+
+.MuiButton-contained {
+  background-color: #74ECC8 !important;
+}
+
+.MuiButton-root {
+  border-radius: 0.5rem !important;
+}
