@@ -1,8 +1,9 @@
 import React from 'react';
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import './App.css';
 import Router from './routes';
+import Home from './pages/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -12,9 +13,10 @@ function App() {
     <div className="App">
       <Header/>
       <br/>
-      <HashRouter>
+      {/*<BrowserRouter>
         <Router />
-      </HashRouter>
+      </BrowserRouter>*/}
+      <Home />
       <br/>
       <Footer/>
     </div>
