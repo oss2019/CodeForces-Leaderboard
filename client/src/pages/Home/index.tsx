@@ -29,7 +29,7 @@ const Home = () => {
     useEffect(() => {
       setLoading(true);
       getLeaderboardData().then(({ data }) => {
-        data.data.forEach((id: Row) => {
+        data?.data.forEach((id: Row) => {
           setRows([ ...rows, createData(id.handle, id.email, id.avatar, id.firstName, id.lastName, id.rank, id.rating) ]);
         });
         setLoading(false);
