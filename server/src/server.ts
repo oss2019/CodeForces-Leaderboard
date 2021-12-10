@@ -24,6 +24,7 @@ export class Server {
     // boilerplate configuration of the packages
     this.connectMongoDb();
     this.configureBodyParser();
+    // this.app.use(cors());
     this.app.use(cors({
       origin: "*",
       credentials: true,
