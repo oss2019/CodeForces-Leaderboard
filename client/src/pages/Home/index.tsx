@@ -30,7 +30,7 @@ const Home = () => {
       setLoading(true);
       getLeaderboardData().then(({ data }) => {
         data?.data.forEach((id: Row) => {
-          setRows([ ...rows, createData(id.handle, id.email, id.avatar, id.firstName, id.lastName, id.rank, id.rating) ]);
+          setRows(rows => [ ...rows, createData(id.handle, id.email, id.avatar, id.firstName, id.lastName, id.rank, id.rating) ]);
         });
         setLoading(false);
       }).catch(err => console.log(err));
