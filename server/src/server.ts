@@ -24,11 +24,13 @@ export class Server {
     // boilerplate configuration of the packages
     this.connectMongoDb();
     this.configureBodyParser();
-    this.app.use(cors({
-      origin: "*",
-      credentials: true,
-      optionSuccessStatus: 200
-    }));
+    this.app.use(
+      cors({
+        origin: '*',
+        credentials: true
+        // optionSuccessStatus: 200
+      })
+    );
     console.log('Configurations have been successfully setup');
   }
 
