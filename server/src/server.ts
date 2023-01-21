@@ -24,11 +24,12 @@ export class Server {
     // boilerplate configuration of the packages
     this.connectMongoDb();
     this.configureBodyParser();
+    // this.app.use(cors());
     this.app.use(
       cors({
         origin: '*',
         credentials: true
-        // optionSuccessStatus: 200
+        /* optionSuccessStatus: 200 */
       })
     );
     console.log('Configurations have been successfully setup');
@@ -50,10 +51,13 @@ export class Server {
   connectMongoDb() {
     // establishing connection with mongodb
     const databaseUrl = getEnvironmentVariables().db_url;
-    mongoose.connect(databaseUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    mongoose.connect(
+      databaseUrl
+      /*   , { */
+      /*   useNewUrlParser: true, */
+      /*   useUnifiedTopology: true */
+      /* } */
+    );
     mongoose.connection.on('open', () => {
       console.log('connection successfully made with database');
     });

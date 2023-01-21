@@ -8,7 +8,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Avatar,
+  Avatar
 } from "@material-ui/core";
 
 import useStyles from "./styles";
@@ -47,14 +47,7 @@ const Home = () => {
     setLoading(true);
     getLeaderboardData()
       .then(({ data }) => {
-        var temp = data?.data;
-        var haveRating = temp.filter((t: any) => typeof t?.rating === "number");
-        haveRating.sort((a: any, b: any) => b?.rating - a?.rating);
-        var doNotHaveRating = temp.filter(
-          (t: any) => typeof t?.rating !== "number"
-        );
-        temp = [...haveRating, ...doNotHaveRating];
-        temp.forEach((id: Row) => {
+        data?.data.forEach((id: Row) => {
           setRows((rows) => [
             ...rows,
             createData(
@@ -65,7 +58,7 @@ const Home = () => {
               id.lastName,
               id.rank,
               id.rating
-            ),
+            )
           ]);
         });
         setLoading(false);
@@ -89,7 +82,6 @@ const Home = () => {
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Rank</TableCell>
                         <TableCell>Avatar</TableCell>
                         <TableCell align="center">Name</TableCell>
                         <TableCell align="center">Handle</TableCell>
@@ -99,21 +91,49 @@ const Home = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {rows.map((row, index) => (
-                        <TableRow key={index}>
-                          <TableCell>{index + 1}</TableCell>
-                          <TableCell>
-                            <Avatar src={row.avatar} alt="avatar" />
-                          </TableCell>
-                          <TableCell align="center" component="th" scope="row">
-                            {`${row.firstName} ${row.lastName}`}
-                          </TableCell>
-                          <TableCell align="center">{row.handle}</TableCell>
-                          <TableCell align="center">{row.email}</TableCell>
-                          <TableCell align="center">{row.rank}</TableCell>
-                          <TableCell align="center">{row.rating}</TableCell>
-                        </TableRow>
-                      ))}
+                      {rows
+                        .filter((item: any) => item.rating)
+                        .sort((a: any, b: any) =>
+                          a?.rating >= b?.rating ? -1 : 1
+                        )
+                        .map((row, index) => (
+                          <TableRow key={index}>
+                            <TableCell>
+                              <Avatar src={row.avatar} alt="avatar" />
+                            </TableCell>
+                            <TableCell
+                              align="center"
+                              component="th"
+                              scope="row"
+                            >
+                              {`${row.firstName} ${row.lastName}`}
+                            </TableCell>
+                            <TableCell align="center">{row.handle}</TableCell>
+                            <TableCell align="center">{row.email}</TableCell>
+                            <TableCell align="center">{row.rank}</TableCell>
+                            <TableCell align="center">{row.rating}</TableCell>
+                          </TableRow>
+                        ))}
+                      {rows
+                        .filter((item: any) => !item.rating)
+                        .map((row, index) => (
+                          <TableRow key={index}>
+                            <TableCell>
+                              <Avatar src={row.avatar} alt="avatar" />
+                            </TableCell>
+                            <TableCell
+                              align="center"
+                              component="th"
+                              scope="row"
+                            >
+                              {`${row.firstName} ${row.lastName}`}
+                            </TableCell>
+                            <TableCell align="center">{row.handle}</TableCell>
+                            <TableCell align="center">{row.email}</TableCell>
+                            <TableCell align="center">{row.rank}</TableCell>
+                            <TableCell align="center">{row.rating}</TableCell>
+                          </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
                 </TableContainer>

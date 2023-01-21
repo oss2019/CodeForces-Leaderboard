@@ -19,10 +19,5 @@ const MemberDetailsSchema: Schema = new Schema({
   updated_at: { type: Date, required: true, default: new Date() }
 });
 
-// const MemberDetails: Model<MemberDetailsDocument> = model(
-//   'MemberDetails',
-//   MemberDetailsSchema
-// );
-
 const MemberDetails = model('MemberDetails', MemberDetailsSchema);
 export default MemberDetails;
