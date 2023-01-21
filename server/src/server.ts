@@ -28,8 +28,8 @@ export class Server {
     this.app.use(
       cors({
         origin: '*',
-        credentials: true,
-        optionSuccessStatus: 200
+        credentials: true
+        /* optionSuccessStatus: 200 */
       })
     );
     console.log('Configurations have been successfully setup');
