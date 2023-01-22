@@ -10,7 +10,7 @@ import {
   Snackbar,
   TextField,
   Grid,
-  DialogActions,
+  DialogActions
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 
@@ -103,13 +103,13 @@ const SignupButton = () => {
     }
 
     const res = {
-        user: {
-            handle: handle,
-            rollNum: getRoll(),
-            year: 2000+(getRoll()/10000000),
-            branch: branch
-        }
-    }
+      user: {
+        handle: handle,
+        rollNum: getRoll(),
+        year: 2000 + getRoll() / 10000000,
+        branch: branch
+      }
+    };
     await SignUp(res);
     handleClose();
     window.location.reload();
@@ -166,6 +166,10 @@ const SignupButton = () => {
                 <MenuItem value={"EE"}>EE</MenuItem>
                 <MenuItem value={"ME"}>ME</MenuItem>
                 <MenuItem value={"EP"}>EP</MenuItem>
+                <MenuItem value={"MAC"}>MAC</MenuItem>
+                <MenuItem value={"CE"}>CE</MenuItem>
+                <MenuItem value={"BTE"}>BTE</MenuItem>
+                <MenuItem value={"BSMSE"}>BSMSE</MenuItem>
               </TextField>
             </Grid>
           </Grid>
